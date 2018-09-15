@@ -8,10 +8,10 @@ class Orders extends Controller {
 
     public function index(){
         $total_results = $this->orderModel->rowCount();
-        if (!isset($_GET['perpage'])) {
-            $limit = 10;
-        } else{
+        if (isset($_GET['perpage'])) {
             $limit = $_GET['perpage'];
+        } else{
+            $limit = 10;
         }
         $total_pages = ceil($total_results/$limit);
         if (!isset($_GET['page'])) {
@@ -53,21 +53,20 @@ class Orders extends Controller {
     }
 
     public function searchOrder(){
-        if($_SERVER['REQUEST_METHOD'] = 'POST'){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = ['search' => $_POST['search'] ];
             $orderSearch = $this->orderModel->searchOrder($data);          
-        
            foreach($orderSearch as $order): ?>  
            <tr>
-           <td>  <?php echo $order->order_id;?> </td>
-           <td>  <?php echo $order->name;?> </td>
-           <td>  <?php echo $order->last_name;?> </td>
-           <td>  <?php echo $order->email;?> </td>
-           <td>  <?php echo $order->email;?> </td>
-           <td>  <?php echo $order->phone_number;?> </td>
-           <td>  <?php echo $order->address;?> </td>
-           <td>  <?php echo $order->created_at;?> </td>
+            <td><?php echo $order->id;?></td>
+            <td><?php echo $order->order_id;?></td>
+            <td><?php echo $order->name. " " . $order->last_name;?></td>
+            <td><?php echo $order->email;?></td>
+            <td><?php echo $order->phone_number;?></td>
+            <td><?php echo $order->address;?></td>
+            <td><?php echo ($order->status == 1) ? 'Įvykdytas' : 'Neįvykdytas';?></td>
+            <td><?php echo $order->created_at;?></td>
            </tr>
                
            <?php endforeach;
