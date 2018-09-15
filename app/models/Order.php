@@ -46,4 +46,10 @@ class Order {
         
     }
 
+    public function searchOrder($data){
+        $this->db->query("SELECT * FROM orders WHERE (name LIKE :search) OR (last_name LIKE :search) OR (order_id LIKE :search) OR CONCAT(name, ' ', last_name) LIKE :search ORDER BY created_at DESC LIMIT 10");
+        $this->db->bind(':search', $data['search'] . '%');
+        return $this->db->resultSet();
+    }
+
 }
