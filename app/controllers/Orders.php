@@ -67,7 +67,8 @@ class Orders extends Controller {
             <td><?php echo $order->email;?></td>
             <td><?php echo $order->phone_number;?></td>
             <td><?php echo $order->address . " " . $order->zip;?></td>
-            <td class="text-center"><?php echo ($order->status == 1) ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>";?></td>
+            <td class="text-center"><?php echo ($order->status == 1) ? "<i class='fas fa-check'></i>" : 
+        "<a data-toggle='confirmation' data-title=Įvykdytas? href='$urlroot/orders/confirmOrder/$order->id'><i title='Patvirtinti' class='fas fa-times'></i></a>";?></td>
             <td><?php echo date("y-m-d H:i", strtotime($order->created_at));?></td>
            </tr>               
            <?php endforeach;               
