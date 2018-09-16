@@ -1,0 +1,36 @@
+a{
+    color: #6c5757;
+} 
+
+a:hover{
+    color: #3b2c2c;
+}
+
+.page-link {
+    color: #6c5757;
+}
+.page-link:hover {
+    color: #3b2c2c;
+}
+
+.form-control2 {
+  width: 55px;
+  height: calc(2.25rem + 2px);
+  padding: 0.375rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .selected{
+    color: chocolate;
+  }
+
+  .hiddenRow {
+    padding: 0 !important;
+}
