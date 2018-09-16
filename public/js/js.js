@@ -13,7 +13,7 @@ $(document).ready(function () {
             $("#paging").hide();
             $.ajax({
                 type: "POST",
-                url: "orders/searchOrder",
+                url: "/benches/orders/searchOrder",
                 data: {
                     search: name
                 },
@@ -24,3 +24,4 @@ $(document).ready(function () {
         }
     });
 });
+
