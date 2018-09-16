@@ -2,6 +2,7 @@
 
 
 class Orders extends Controller {
+   
     public function __construct(){
         $this->orderModel = $this->model('Order');
     }
@@ -11,7 +12,7 @@ class Orders extends Controller {
         if (isset($_GET['perpage'])) {
             $limit = $_GET['perpage'];
         } else{
-            $limit = 10;
+            $limit = 5;
         }
         $total_pages = ceil($total_results/$limit);
         if (!isset($_GET['page'])) {
@@ -56,6 +57,7 @@ class Orders extends Controller {
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = ['search' => $_POST['search'] ];
+            $urlroot = URLROOT;
             $orderSearch = $this->orderModel->searchOrder($data);          
            foreach($orderSearch as $order): ?>  
            <tr>
@@ -64,13 +66,22 @@ class Orders extends Controller {
             <td><?php echo $order->name. " " . $order->last_name;?></td>
             <td><?php echo $order->email;?></td>
             <td><?php echo $order->phone_number;?></td>
-            <td><?php echo $order->address;?></td>
-            <td><?php echo ($order->status == 1) ? 'Įvykdytas' : 'Neįvykdytas';?></td>
-            <td><?php echo $order->created_at;?></td>
-           </tr>
-               
-           <?php endforeach;
-               
+            <td><?php echo $order->address . " " . $order->zip;?></td>
+            <td class="text-center"><?php echo ($order->status == 1) ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>";?></td>
+            <td><?php echo date("y-m-d H:i", strtotime($order->created_at));?></td>
+           </tr>               
+           <?php endforeach;               
         }
+    }
+
+    public function confirmOrder($data){
+        if(is_numeric($data)){
+            if($this->orderModel->confirmOrder($data)){
+                redirect('orders/index');
+            }else{
+                die('Something went wrong');
+            }
+        }
+
     }
 }

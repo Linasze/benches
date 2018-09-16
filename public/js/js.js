@@ -4,12 +4,13 @@ $(document).ready(function () {
         if (name == "") {
             $("#show-list").show();
             $("#sorting").show();
+            $("#paging").show();
             $("#hide-list").hide();
-
         }
         else {
             $("#show-list").hide();
             $("#sorting").hide();
+            $("#paging").hide();
             $.ajax({
                 type: "POST",
                 url: "orders/searchOrder",

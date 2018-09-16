@@ -16,20 +16,19 @@ class Order {
     }
 
     public function showList($data){
-        // Get variables here, because bind function not working on this variables
+    
         $order = $data['order'];
         $sort = $data['sort'];
         $limit = $data['limit'];
+        $starting_limit = $data['starting_limit'];
     
         if(!isset($data['status'])){
-        $this->db->query("SELECT * FROM orders  ORDER BY $order $sort LIMIT :starting_limit, $limit");
+        $this->db->query("SELECT * FROM orders  ORDER BY $order $sort LIMIT $starting_limit, $limit");
         }elseif($data['status'] == 1){
-        $this->db->query("SELECT * FROM orders WHERE status = 1  ORDER BY $order $sort LIMIT :starting_limit, $limit");
+        $this->db->query("SELECT * FROM orders WHERE status = 1  ORDER BY $order $sort LIMIT $starting_limit, $limit");
         }else{
-            $this->db->query("SELECT * FROM orders WHERE status = 0  ORDER BY $order $sort LIMIT :starting_limit, $limit");
-        }
-        $this->db->bind(':starting_limit', $data['starting_limit']);      
-     
+            $this->db->query("SELECT * FROM orders WHERE status = 0  ORDER BY $order $sort LIMIT $starting_limit, $limit");
+        }       
         return $this->db->resultSet();
     }
 
@@ -50,6 +49,16 @@ class Order {
         (order_id LIKE :search) OR CONCAT(name, ' ', last_name) LIKE :search OR CONCAT(last_name, ' ', name) LIKE :search ORDER BY created_at DESC LIMIT 10");
         $this->db->bind(':search', $data['search'] . '%');
         return $this->db->resultSet();
+    }
+
+    public function confirmOrder($data){
+        $this->db->query("UPDATE orders SET status = 1  WHERE id = :id");
+        $this->db->bind(':id', $data);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        } 
     }
 
 }

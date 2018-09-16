@@ -22,7 +22,7 @@
 ?>
 <div class="container mt-4">
 <h2>Užsakymai</h2>
-<div id="sorting">
+<!-- <div id="sorting">
 Rūšiuoti nuo:
 <?php if($_GET['sort'] == 'ASC'): ?>
 <?php if(isset($_GET['perpage']) && isset($_GET['status']) && isset($_GET['page'])): ?>
@@ -73,8 +73,9 @@ Rūšiuoti nuo:
 <a href="?<?php if (isset($_GET['status']) && isset($_GET['page'])){ echo "page=$getPage&order=$getOrder&sort=$getSort&status=$getStatus&perpage=10";}elseif (isset($_GET['page'])){ echo "page=$getPage&order=id&sort=$getSort&perpage=10";}elseif(isset($_GET['status'])){ echo "order=$getOrder&sort=$getSort&status=$getStatus&perpage=10"; }else{ echo "order=id&sort=DESC&perpage=10";}?>" class="<?php echo ($_GET['perpage'] == 10) ? "selected" : "";?>">10</a>
 <a href="?<?php if (isset($_GET['status']) && isset($_GET['page'])){ echo "page=$getPage&order=$getOrder&sort=$getSort&status=$getStatus&perpage=15";}elseif (isset($_GET['page'])){ echo "page=$getPage&order=id&sort=$getSort&perpage=15";}elseif(isset($_GET['status'])){ echo "order=$getOrder&sort=$getSort&status=$getStatus&perpage=15";}else{ echo "order=id&sort=DESC&perpage=15";}?>" class="<?php echo ($_GET['perpage'] == 15) ? "selected" : "";?>">15</a>
 
-</div>
-<input type="search" name="search" id="search" class="form-control" placeholder="Užsakymo paieška, įveskite vardą pavardę arba užsakymo numerį">
+</div> -->
+<!-- <input type="search" name="search" id="search" class="form-control" placeholder="Užsakymo paieška, įveskite vardą pavardę arba užsakymo numerį"> -->
+
 <table class="table table-condensed table-hover">
 <thead>
 <tr>
