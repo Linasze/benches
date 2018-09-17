@@ -118,43 +118,36 @@ Rūšiuoti nuo:
                 <i title='Patvirtinti' class='fas fa-times'></i></a>";
             }
         }
-        ?>
-        
-        </td>
-       
-       
-       
-        <td><?php echo date("y-m-d H:i", strtotime($order->created_at));?></td>
-    </tr>
-<?php endforeach; ?>
-</tbody>
-<tbody id="hide-list">
-</tbody>
-</table>
-<?php else: ?>
-	Nėra užsakymų
-<?php endif;?>	
-<?php
-?>
-<?php if($data['listCount'] > $data['limit']):?>
-<nav aria-label="Page navigation" id="paging">
-  <ul class="pagination ">
-<?php for ($page=1; $page <= $data['total_pages']; $page++):?>
-<?php if(isset($_GET['status']) && isset($_GET['perpage'])): ?>
-  <li class="page-item "><a class="page-link" href="?<?php echo "page=$page&order=$getOrder&sort=$getSort&status=$getStatus&perpage=$getPerpage"; ?>"><?php echo $page;?></a></li>
-<?php elseif(isset($_GET['status'])): ?>
-  <li class="page-item "><a class="page-link" href="?<?php echo "page=$page&order=$getOrder&sort=$getSort&status=$getStatus"; ?>"><?php echo $page;?></a></li>
-  <?php elseif(isset($_GET['sort'])): ?>
-  <li class="page-item "><a class="page-link" href="?<?php echo "page=$page&order=$getOrder&sort=$getSort"; ?>"><?php echo $page;?></a></li>
-  <?php elseif(isset($_GET['perpage'])): ?>
-  <li class="page-item "><a class="page-link" href="?<?php echo "page=$page&order=$getOrder&sort=$getSort&perpage=$getPerpage"; ?>"><?php echo $page;?></a></li>
-<?php else : ?>
-<li class="page-item "><a class="page-link" href="?<?php echo "page=$page&order=id&sort=DESC"; ?>"><?php echo $page;?></a></li>
-<?php endif; ?>
-<?php endfor; ?>
-  </ul>
-</nav>
-<?php endif; ?>
+        ?></td>    
+         <td><?php echo date("y-m-d H:i", strtotime($order->created_at));?></td>
+        </tr>
+        <?php endforeach; ?>
+        </tbody>
+        <tbody id="hide-list">
+        </tbody>
+        </table>
+        <?php else: ?>
+        	Nėra užsakymų
+            <?php endif;?>	
+        <?php if($data['listCount'] > $data['limit']):?>
+        <nav aria-label="Page navigation" id="paging">
+        <ul class="pagination ">
+        <?php for ($page=1; $page <= $data['total_pages']; $page++):?>
+        <?php if(isset($_GET['status']) && isset($_GET['perpage'])): ?>
+        <li class="page-item "><a class="page-link" href="?<?php echo "page=$page&order=$getOrder&sort=$getSort&status=$getStatus&perpage=$getPerpage"; ?>"><?php echo $page;?></a></li>
+        <?php elseif(isset($_GET['status'])): ?>
+        <li class="page-item "><a class="page-link" href="?<?php echo "page=$page&order=$getOrder&sort=$getSort&status=$getStatus"; ?>"><?php echo $page;?></a></li>
+        <?php elseif(isset($_GET['sort'])): ?>
+        <li class="page-item "><a class="page-link" href="?<?php echo "page=$page&order=$getOrder&sort=$getSort"; ?>"><?php echo $page;?></a></li>
+        <?php elseif(isset($_GET['perpage'])): ?>
+        <li class="page-item "><a class="page-link" href="?<?php echo "page=$page&order=$getOrder&sort=$getSort&perpage=$getPerpage"; ?>"><?php echo $page;?></a></li>
+        <?php else : ?>
+        <li class="page-item "><a class="page-link" href="?<?php echo "page=$page&order=id&sort=DESC"; ?>"><?php echo $page;?></a></li>
+        <?php endif; ?>
+        <?php endfor; ?>
+        </ul>
+        </nav>
+        <?php endif; ?>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
