@@ -1,5 +1,4 @@
 <h2>PHP ordering App</h2>      
-<br>
 Full custom PHP ordering and orders review system using MVC & OOP & PDO<br>
 
 <h2>Usage</h2>
