@@ -19,9 +19,11 @@
   $sort = $data['sort'];
   $sort == 'DESC' ? $sort = 'ASC' : $sort = 'DESC';
   $urlroot = URLROOT;
+  $ifpagecountbigger = ($getPage > $data['listStatus1']) ? "1" : "$getPage";
 ?>
 <div class="container mt-4">
 <h2>Užsakymai</h2>
+<?php if(!empty($data['orders'])): ?>
 <div id="sorting">
 Rūšiuoti nuo:
 <?php if($_GET['sort'] == 'ASC'): ?>
@@ -62,7 +64,7 @@ Rūšiuoti nuo:
 <?php if($_GET['status'] == '1'): ?>
     <a href="?<?php echo (isset($_GET['page'])) ? "page=$getPage&order=id&sort=DESC&status=0" : 'order=id&sort=DESC&status=0' ;?>">Neįvykdyti <i class='fas fa-times'></i></a>
 <?php else: ?>
-    <a href="?<?php echo (isset($_GET['page'])) ? "page=$getPage&order=id&sort=DESC&status=1" : 'order=id&sort=DESC&status=1' ;?>">Įvykdyti <i class='fas fa-check'></i></a>
+    <a href="?<?php echo (isset($_GET['page'])) ? "page=$ifpagecountbigger&order=id&sort=DESC&status=1" : 'order=id&sort=DESC&status=1' ;?>">Įvykdyti <i class='fas fa-check'></i></a>
 <?php endif; ?>
 <?php if(isset($_GET['status'])): ?>
  <a href="orders"> Panaikinti filtrą</a>
@@ -75,7 +77,6 @@ Rūšiuoti nuo:
 
 </div>
 <input type="search" name="search" id="search" class="form-control" placeholder="Užsakymo paieška, įveskite vardą pavardę arba užsakymo numerį">
-
 <table class="table table-condensed table-hover">
 <thead>
 <tr>
@@ -98,8 +99,31 @@ Rūšiuoti nuo:
         <td><?php echo $order->email;?></td>
         <td><?php echo $order->phone_number;?></td>
         <td><?php echo $order->address . " " . $order->zip;?></td>
-        <td class="text-center"><?php echo ($order->status == 1) ? "<i class='fas fa-check'></i>" : 
-        "<a data-toggle='confirmation' data-title=Įvykdytas? href='$urlroot/orders/confirmOrder/$order->id'><i title='Patvirtinti' class='fas fa-times'></i></a>";?></td>
+        <td class="text-center">
+        <?php 
+        if($order->status == 1){
+            echo "<i class='fas fa-check'></i>";
+        }else{
+        if(isset($_GET['page']) && isset($_GET['status'])){
+            echo "<a data-toggle='confirmation' data-title=Įvykdytas? href='$urlroot/orders/confirmOrder/$order->id?page=$getPage&order=$getOrder&sort=$getSort&status=$getStatus'>
+                <i title='Patvirtinti' class='fas fa-times'></i></a>";
+        }elseif(isset($_GET['page'])){
+                echo "<a data-toggle='confirmation' data-title=Įvykdytas? href='$urlroot/orders/confirmOrder/$order->id?page=$getPage&order=$getOrder&sort=$getSort'>
+                <i title='Patvirtinti' class='fas fa-times'></i></a>";
+        }elseif(isset($_GET['status'])){
+                echo "<a data-toggle='confirmation' data-title=Įvykdytas? href='$urlroot/orders/confirmOrder/$order->id?order=$getOrder&sort=$getSort&status=$getStatus'>
+                    <i title='Patvirtinti' class='fas fa-times'></i></a>";
+        }else{
+                echo "<a data-toggle='confirmation' data-title=Įvykdytas? href='$urlroot/orders/confirmOrder/$order->id'>
+                <i title='Patvirtinti' class='fas fa-times'></i></a>";
+            }
+        }
+        ?>
+        
+        </td>
+       
+       
+       
         <td><?php echo date("y-m-d H:i", strtotime($order->created_at));?></td>
     </tr>
 <?php endforeach; ?>
@@ -107,6 +131,9 @@ Rūšiuoti nuo:
 <tbody id="hide-list">
 </tbody>
 </table>
+<?php else: ?>
+	Nėra užsakymų
+<?php endif;?>	
 <?php
 ?>
 <?php if($data['listCount'] > $data['limit']):?>
