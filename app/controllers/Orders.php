@@ -8,46 +8,66 @@ class Orders extends Controller {
     }
 
     public function index(){
+        // Fetch all records count from db
         $total_results = $this->orderModel->rowCount();
+
+        // If status SET, get status id
+        if(isset($_GET['status'])){
+            $status = $_GET['status'];
+        }
+
+        // Filter query by status id
+        $filter = ['status' => $status];
+        $listCount = $this->orderModel->listCount($filter);
+
+        // Get perpage id, if perpage not SET use default limit 5
         if (isset($_GET['perpage'])) {
             $limit = $_GET['perpage'];
         } else{
             $limit = 5;
         }
-        $total_pages = ceil($total_results/$limit);
+
+        // Count total page
+        $total_pages = ceil($listCount/$limit);
+
+        // Get page id
         if (!isset($_GET['page'])) {
             $page = 1;
         } else{
             $page = $_GET['page'];
         }
 
+        // Get desc/asc order settings
         if(isset($_GET['order'])){
             $order = $_GET['order'];
         }else{
             $order = 'id';
         }
 
+        // Get sorting settings
         if(isset($_GET['sort'])){
             $sort = $_GET['sort'];
         }else{
             $sort = 'DESC';
         }
 
-        if(isset($_GET['status'])){
-            $status = $_GET['status'];
-        }
-    
+        // Count default limit
         $starting_limit = ($page-1)*$limit;
+        // Create sorting array
         $sorting = ['limit' => $limit, 'starting_limit' => $starting_limit, 'order' => $order, 'sort'=> $sort, 'status' => $status];   
-        $filter = ['status' => $status];
+        // Get first records
         $orders = $this->orderModel->showList($sorting);
-        $listCount = $this->orderModel->listCount($filter);
+        // Make array with status=1 
+        $status1 = ['status' => 1];
+        // Paging query by records count
+        $listStatus1 = ceil($this->orderModel->listCount($status1)/$limit);
         $data = [
             'total_pages' => $total_pages,
             'listCount' => $listCount,
             'orders' => $orders,
             'sort' => $sort,
-            'limit' => $limit        
+            'limit' => $limit,
+            'listStatus1' => $listStatus1        
            
         ];
         $this->view('orders/index', $data);
@@ -77,8 +97,20 @@ class Orders extends Controller {
 
     public function confirmOrder($data){
         if(is_numeric($data)){
+            $getpage = $_GET['page'];
+            $getorder = $_GET['order'];
+            $getsort = $_GET['sort'];
+            $getstatus = $_GET['status'];
             if($this->orderModel->confirmOrder($data)){
-                redirect('orders/index');
+                if(isset($_GET['page']) && isset($_GET['status'])){
+                    redirect("orders?page=$getpage&order=$getorder&sort=$getsort&status=$getstatus");
+                }elseif(isset($_GET['page'])){
+                    redirect("orders?page=$getpage&order=$getorder&sort=$getsort");
+                }elseif(isset($_GET['status'])){
+                    redirect("orders?order=$getorder&sort=$getsort&status=$getstatus");
+                }else{
+                    redirect('orders/index');
+                }
             }else{
                 die('Something went wrong');
             }
