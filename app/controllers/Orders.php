@@ -85,7 +85,7 @@ class Orders extends Controller {
            <tr>
             <td><?php echo $order->id;?></td>
             <td><?php echo $order->order_id;?></td>
-            <td><?php echo $order->name. " " . $order->last_name;?></td>
+            <td style="width: 150px"><?php echo $order->name. " " . $order->last_name;?></td>
             <td><?php echo $order->email;?></td>
             <td><?php echo $order->phone_number;?></td>
             <td><?php echo $order->address . " " . $order->zip;?></td>
@@ -93,7 +93,10 @@ class Orders extends Controller {
         "<a data-toggle='confirmation' data-title=Įvykdytas? href='$urlroot/orders/confirmOrder/$order->id'><i title='Patvirtinti' class='fas fa-times'></i></a>";?></td>
             <td><?php echo date("y-m-d H:i", strtotime($order->created_at));?></td>
            </tr>               
-           <?php endforeach;               
+           <?php endforeach;  
+           echo "<script type='text/javascript'>$('[data-toggle=confirmation]').confirmation({
+            rootSelector: '[data-toggle=confirmation]'
+            });</script>";             
         }
     }
 
