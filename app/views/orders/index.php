@@ -22,7 +22,8 @@
   $ifpagecountbigger = ($getPage > $data['listStatus1']) ? "1" : "$getPage";
   $listperpage5 = ($getPage > $data['total_results']/5) ? "1" : "$getPage";
   $listperpage10 = ($getPage > $data['total_results']/10) ? "1" : "$getPage";
-  $listperpage15 = ($getPage > $data['total_results']/15) ? "1" : "$getPage";
+  $listperpage15 = ($getPage > ceil($data['total_results']/16)) ? "1" : "$getPage";
+
 ?>
 <div class="container mt-4">
 <h2>Užsakymai</h2>
@@ -93,17 +94,17 @@ Rūšiuoti nuo:
 <th>Data</th>
 </tr>
 </thead>
-<tbody id="show-list">
+  <tbody id="show-list">
     <?php foreach($data['orders'] as $order):?>
     <tr id="hide">
         <td><?php echo $order->id;?></td>
         <td><?php echo $order->order_id;?></td>
-        <td><?php echo $order->name. " " . $order->last_name;?></td>
+        <td style="width: 150px"><?php echo $order->name. " " . $order->last_name;?></td>
         <td><?php echo $order->email;?></td>
         <td><?php echo $order->phone_number;?></td>
         <td><?php echo $order->address . " " . $order->zip;?></td>
         <td class="text-center">
-        <?php 
+        <?php
         if($order->status == 1){
             echo "<i class='fas fa-check'></i>";
         }else{
@@ -127,17 +128,17 @@ Rūšiuoti nuo:
                 <i title='Patvirtinti' class='fas fa-times'></i></a>";
             }
         }
-        ?></td>    
+        ?></td>
          <td><?php echo date("y-m-d H:i", strtotime($order->created_at));?></td>
         </tr>
         <?php endforeach; ?>
-        </tbody>
+    </tbody>
         <tbody id="hide-list">
         </tbody>
-        </table>
+</table>
         <?php else: ?>
-        	Nėra užsakymų
-            <?php endif;?>	
+            Nėra užsakymų
+            <?php endif;?>
         <?php if($data['listCount'] > $data['limit']):?>
         <nav aria-label="Page navigation" id="paging">
         <ul class="pagination ">
@@ -164,10 +165,5 @@ Rūšiuoti nuo:
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-confirmation2/dist/bootstrap-confirmation.min.js"></script>
 <script src="<?php echo URLROOT;?>/public/js/js.js"></script>
-<script>
-$('[data-toggle=confirmation]').confirmation({
-  rootSelector: '[data-toggle=confirmation]'
-});
-</script>
 </body>
 </html>
