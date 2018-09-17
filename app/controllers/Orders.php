@@ -127,4 +127,32 @@ class Orders extends Controller {
         }
 
     }
+
+    public function unconfirmOrder($data){
+        if(is_numeric($data)){
+            $getpage = $_GET['page'];
+            $getperpage = $_GET['perpage'];
+            $getorder = $_GET['order'];
+            $getsort = $_GET['sort'];
+            $getstatus = $_GET['status'];
+            if($this->orderModel->unconfirmOrder($data)){
+                if(isset($_GET['page']) && isset($_GET['status']) && isset($_GET['perpage'])){
+                    redirect("orders?page=$getpage&order=$getorder&sort=$getsort&status=$getstatus&perpage=$getperpage");
+                }elseif(isset($_GET['page']) && isset($_GET['status'])){
+                    redirect("orders?page=$getpage&order=$getorder&sort=$getsort&status=$getstatus");
+                }elseif(isset($_GET['page']) && isset($_GET['perpage'])){
+                    redirect("orders?page=$getpage&order=$getorder&sort=$getsort&perpage=$getperpage");
+                }elseif(isset($_GET['page'])){
+                    redirect("orders?page=$getpage&order=$getorder&sort=$getsort");
+                }elseif(isset($_GET['status'])){
+                    redirect("orders?order=$getorder&sort=$getsort&status=$getstatus");
+                }else{
+                    redirect('orders/index');
+                }
+            }else{
+                die('Something went wrong');
+            }
+        }
+
+    }
 }
