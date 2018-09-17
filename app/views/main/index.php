@@ -12,7 +12,7 @@
 <body>
 <header class="showcase">
 <div class="content">
-<i class="fas fa-dumbbell fa-10x" style="text-shadow: -1px 0 #2e2e2e, 0 1px #2e2e2e, 1px 0 #2e2e2e, 0 -1px #2e2e2e;
+<i class="fas fa-dumbbell fa-10x logo" style="text-shadow: -1px 0 #2e2e2e, 0 1px #2e2e2e, 1px 0 #2e2e2e, 0 -1px #2e2e2e;
 "></i>
 <div class="title">
 Henriko sporto suoliukai
@@ -34,7 +34,7 @@ bei daugiafunkcinis. Jis suteiks galimybę kiekvienam panorejusiam sporto entuzi
 
 <section class="container">
 <div class="grid-3" style="padding-top:20px;">
- <div><img src="<?php echo URLROOT;?>/public/img/bench.jpg" style="height:13.2rem"; class="thumbnail"   alt="bench-refurb"></div>
+ <div><img src="<?php echo URLROOT;?>/public/img/bench.jpg" class="thumbnail"   alt="bench-refurb"></div>
 <div><img src="<?php echo URLROOT;?>/public/img/bench-refurb-17.jpg" class="thumbnail"  alt="bench-refurb"></div>
 <div><img src="<?php echo URLROOT;?>/public/img/bench-refurb-19.jpg" class="thumbnail" alt="bench-refurb"></div>
 </div>
