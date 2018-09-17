@@ -88,7 +88,7 @@ bei daugiafunkcinis. Jis suteiks galimybę kiekvienam panorejusiam sporto entuzi
         </div>
 
       <div>
-          <input type="text" name="name" placeholder="Vardas" class="form-group input <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['name']; ?>">
+          <input type="text" name="name" id="name" placeholder="Vardas" class="form-group input <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['name']; ?>">
         <span class="invalid-feedback"><?php echo $data['name_err'];?></span>
            </div>
 
@@ -97,7 +97,7 @@ bei daugiafunkcinis. Jis suteiks galimybę kiekvienam panorejusiam sporto entuzi
            </div>
 
         <div>
-        <input type="text" name="last_name" placeholder="Pavardė" class="form-group input  <?php echo (!empty($data['last_name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['last_name']; ?>">
+        <input type="text" name="last_name" id="last_name" placeholder="Pavardė" class="form-group input  <?php echo (!empty($data['last_name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['last_name']; ?>">
         <span class="invalid-feedback"><?php echo $data['last_name_err'];?></span>
         </div></div>
 
@@ -105,14 +105,14 @@ bei daugiafunkcinis. Jis suteiks galimybę kiekvienam panorejusiam sporto entuzi
         <div>
             <label class="form-group padding" for="email">El. paštas:</label></div>
         <div>
-        <input type="text" name="email" placeholder="El. paštas" class="form-group input <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['email']; ?>">
+        <input type="text" name="email" id="email" placeholder="El. paštas" class="form-group input <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['email']; ?>">
         <span class="invalid-feedback"><?php echo $data['email_err'];?></span>
         <span class="invalid-feedback"><?php echo $data['confirm_email_err'];?></span>
             </div>
             <div>
         <label class="form-group padding" for="email"> Pakartoti el. pašta:</label>
             </div><div>
-        <input type="text" name="confirm_email" placeholder="Pakartoti el.pašta" class="form-group input <?php echo (!empty($data['confirm_email_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['confirm_email']; ?>">
+        <input type="text" name="confirm_email" id="confirm_email" placeholder="Pakartoti el.pašta" class="form-group input <?php echo (!empty($data['confirm_email_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['confirm_email']; ?>">
         <span class="invalid-feedback"><?php echo $data['confirm_email_err'];?></span>
         <span class="invalid-feedback"><?php echo $data['confirm_email_empty_err'];?></span>
             </div></div>
@@ -121,13 +121,13 @@ bei daugiafunkcinis. Jis suteiks galimybę kiekvienam panorejusiam sporto entuzi
         <div>
          <label class="form-group padding" for="phone_number">Telefono numeris:</label>
     </div><div>
-        <input type="text" name="phone_number" placeholder="Telefonas" class="form-group input <?php echo (!empty($data['phone_number_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['phone_number']; ?>">
+        <input type="text" name="phone_number" id="phone_number" placeholder="Telefonas" class="form-group input <?php echo (!empty($data['phone_number_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['phone_number']; ?>">
         <span class="invalid-feedback"><?php echo $data['phone_number_err'];?></span>
     </div>
        <div>
            <label class="form-group padding" for="zip">Pašto kodas:</label></div>
            <div>
-        <input type="text" name="zip" placeholder="Pašto kodas" class="form-group input <?php echo (!empty($data['zip_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['zip']; ?>">
+        <input type="text" name="zip" id="zip" placeholder="Pašto kodas" class="form-group input <?php echo (!empty($data['zip_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['zip']; ?>">
         <span class="invalid-feedback"><?php echo $data['zip_err'];?></span>
     </div>
     </div>
@@ -136,7 +136,7 @@ bei daugiafunkcinis. Jis suteiks galimybę kiekvienam panorejusiam sporto entuzi
        <div>
            <label class="form-group padding" for="address">Pristatymo adresas:</label></div>
            <div>
-        <input type="text" name="address" placeholder="Pvz. Kalno g. 55-12, Kaunas" class="form-group input-long <?php echo (!empty($data['address_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['address']; ?>">
+        <input type="text" name="address" id="address" placeholder="Pvz. Kalno g. 55-12, Kaunas" class="form-group input-long <?php echo (!empty($data['address_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['address']; ?>">
           <span class="invalid-feedback"><?php echo $data['address_err'];?></span>
            </div>
 </div>
@@ -148,7 +148,7 @@ bei daugiafunkcinis. Jis suteiks galimybę kiekvienam panorejusiam sporto entuzi
 </div>
 
 <footer class="footer center">
-<p>Henriko suoliukai Copyright &copy 2018</p>
+<p>Henriko suoliukai  &copy Copyright 2018</p>
 </footer>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type='text/javascript'>
