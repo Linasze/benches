@@ -148,7 +148,7 @@ bei daugiafunkcinis. Jis suteiks galimybę kiekvienam panorejusiam sporto entuzi
 </div>
 
 <footer class="footer center">
-<p>Henriko suoliukai  &copy Copyright 2018</p>
+<p>Henriko suoliukai  &copy Copyright <?php echo date('Y');?></p>
 </footer>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type='text/javascript'>
