@@ -20,9 +20,9 @@
   $sort == 'DESC' ? $sort = 'ASC' : $sort = 'DESC';
   $urlroot = URLROOT;
   $ifpagecountbigger = ($getPage > $data['listStatus1']) ? "1" : "$getPage";
-  $listperpage5 = ($getPage > $data['total_results']/5) ? "1" : "$getPage";
-  $listperpage10 = ($getPage > $data['total_results']/10) ? "1" : "$getPage";
-  $listperpage15 = ($getPage > ceil($data['total_results']/16)) ? "1" : "$getPage";
+  $listperpage5 = ($getPage >= ceil($data['total_results']/6)) ? "1" : "$getPage";
+  $listperpage10 = ($getPage >= ceil($data['total_results']/11)) ? "1" : "$getPage";
+  $listperpage15 = ($getPage >= ceil($data['total_results']/16)) ? "1" : "$getPage";
 
 ?>
 <div class="container mt-4">
