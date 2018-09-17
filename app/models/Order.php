@@ -60,5 +60,16 @@ class Order {
             return false;
         } 
     }
+    
+
+    public function unconfirmOrder($data){
+        $this->db->query("UPDATE orders SET status = 0  WHERE id = :id");
+        $this->db->bind(':id', $data);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        } 
+    }
 
 }
