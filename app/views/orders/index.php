@@ -78,7 +78,7 @@ Rūšiuoti nuo:
 <a href="?<?php if (isset($_GET['status']) && isset($_GET['page'])){ echo "page=$listperpage5&order=$getOrder&sort=$getSort&status=$getStatus&perpage=5";}elseif (isset($_GET['page'])){ echo "page=$listperpage5&order=id&sort=$getSort&perpage=5"; }elseif(isset($_GET['status'])){ echo "order=$getOrder&sort=$getSort&status=$getStatus&perpage=5"; }else{ echo "order=id&sort=DESC&perpage=5";}?>" class="<?php echo ($_GET['perpage'] == 5) ? "selected" : " ";?>">5</a>
 <a href="?<?php if (isset($_GET['status']) && isset($_GET['page'])){ echo "page=$listperpage10&order=$getOrder&sort=$getSort&status=$getStatus&perpage=10";}elseif (isset($_GET['page'])){ echo "page=$listperpage10&order=id&sort=$getSort&perpage=10";}elseif(isset($_GET['status'])){ echo "order=$getOrder&sort=$getSort&status=$getStatus&perpage=10"; }else{ echo "order=id&sort=DESC&perpage=10";}?>" class="<?php echo ($_GET['perpage'] == 10) ? "selected" : "";?>">10</a>
 <a href="?<?php if (isset($_GET['status']) && isset($_GET['page'])){ echo "page=$listperpage15&order=$getOrder&sort=$getSort&status=$getStatus&perpage=15";}elseif (isset($_GET['page'])){ echo "page=$listperpage15&order=id&sort=$getSort&perpage=15";}elseif(isset($_GET['status'])){ echo "order=$getOrder&sort=$getSort&status=$getStatus&perpage=15";}else{ echo "order=id&sort=DESC&perpage=15";}?>" class="<?php echo ($_GET['perpage'] == 15) ? "selected" : "";?>">15</a>
-<span class="float-right">Spausti ant <i class='fas fa-times'></i> norint patvirtinti užsakymą.</span>
+<span class="float-right">Spausti ant <i class='fas fa-times'></i> patvirtinti užsakymą.</span>
 </div>
 <input type="search" name="search" id="search" class="form-control" placeholder="Užsakymo paieška, įveskite vardą pavardę arba užsakymo numerį">
 <table class="table table-condensed table-hover">
@@ -106,7 +106,25 @@ Rūšiuoti nuo:
         <td class="text-center">
         <?php
         if($order->status == 1){
-            echo "<i class='fas fa-check'></i>";
+            if(isset($_GET['page']) && isset($_GET['status']) && isset($_GET['perpage'])){
+                echo "<a data-toggle='confirmation' data-title=Atšaukti? href='$urlroot/orders/unconfirmOrder/$order->id?page=$getPage&order=$getOrder&sort=$getSort&status=$getStatus&perpage=$getPerpage'>
+                    <i title='Atšaukti' class='fas fa-check'></i></a>";
+        }elseif(isset($_GET['page']) && isset($_GET['status'])){
+            echo "<a data-toggle='confirmation' data-title=Atšaukti? href='$urlroot/orders/unconfirmOrder/$order->id?page=$getPage&order=$getOrder&sort=$getSort&status=$getStatus'>
+                <i title='Atšaukti' class='fas fa-check'></i></a>";
+        }elseif(isset($_GET['page']) && isset($_GET['perpage'])){
+             echo "<a data-toggle='confirmation' data-title=Atšaukti? href='$urlroot/orders/unconfirmOrder/$order->id?page=$getPage&order=$getOrder&sort=$getSort&perpage=$getPerpage'>
+                <i title='Atšaukti' class='fas fa-check'></i></a>";
+        }elseif(isset($_GET['page'])){
+                echo "<a data-toggle='confirmation' data-title=Atšaukti? href='$urlroot/orders/unconfirmOrder/$order->id?page=$getPage&order=$getOrder&sort=$getSort'>
+                <i title='Atšaukti' class='fas fa-check'></i></a>";
+        }elseif(isset($_GET['status'])){
+                echo "<a data-toggle='confirmation' data-title=Atšaukti? href='$urlroot/orders/unconfirmOrder/$order->id?order=$getOrder&sort=$getSort&status=$getStatus'>
+                    <i title='Atšaukti' class='fas fa-check'></i></a>";
+        }else{
+                echo "<a data-toggle='confirmation' data-title=Atšaukti? href='$urlroot/orders/unconfirmOrder/$order->id'>
+                <i title='Atšaukti' class='fas fa-check'></i></a>";
+            }
         }else{
         if(isset($_GET['page']) && isset($_GET['status']) && isset($_GET['perpage'])){
                 echo "<a data-toggle='confirmation' data-title=Įvykdytas? href='$urlroot/orders/confirmOrder/$order->id?page=$getPage&order=$getOrder&sort=$getSort&status=$getStatus&perpage=$getPerpage'>
