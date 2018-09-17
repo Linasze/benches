@@ -107,8 +107,14 @@ Rūšiuoti nuo:
         if($order->status == 1){
             echo "<i class='fas fa-check'></i>";
         }else{
-        if(isset($_GET['page']) && isset($_GET['status'])){
+        if(isset($_GET['page']) && isset($_GET['status']) && isset($_GET['perpage'])){
+                echo "<a data-toggle='confirmation' data-title=Įvykdytas? href='$urlroot/orders/confirmOrder/$order->id?page=$getPage&order=$getOrder&sort=$getSort&status=$getStatus&perpage=$getPerpage'>
+                    <i title='Patvirtinti' class='fas fa-times'></i></a>";
+        }elseif(isset($_GET['page']) && isset($_GET['status'])){
             echo "<a data-toggle='confirmation' data-title=Įvykdytas? href='$urlroot/orders/confirmOrder/$order->id?page=$getPage&order=$getOrder&sort=$getSort&status=$getStatus'>
+                <i title='Patvirtinti' class='fas fa-times'></i></a>";
+        }elseif(isset($_GET['page']) && isset($_GET['perpage'])){
+             echo "<a data-toggle='confirmation' data-title=Įvykdytas? href='$urlroot/orders/confirmOrder/$order->id?page=$getPage&order=$getOrder&sort=$getSort&perpage=$getPerpage'>
                 <i title='Patvirtinti' class='fas fa-times'></i></a>";
         }elseif(isset($_GET['page'])){
                 echo "<a data-toggle='confirmation' data-title=Įvykdytas? href='$urlroot/orders/confirmOrder/$order->id?page=$getPage&order=$getOrder&sort=$getSort'>
