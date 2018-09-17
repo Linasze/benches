@@ -37,11 +37,7 @@ a:hover{
 
 
 .footer {    
-        background: rgb(52, 58, 55);
-        color: rgb(158, 163, 160);
-        padding-top: 10px;
-        padding-bottom: 10px;
-        margin-top: 50px;
-        text-align: center;
-        font-family: 'Montserrat', sans-serif;
+       
+        padding-top: 20px;
+        
 }
