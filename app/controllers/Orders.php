@@ -28,7 +28,7 @@ class Orders extends Controller {
         }
 
         // Count total page
-        $total_pages = ceil($listCount/$limit);
+       $total_pages = ceil($listCount/$limit);
 
         // Get page id
         if (!isset($_GET['page'])) {
@@ -61,13 +61,15 @@ class Orders extends Controller {
         $status1 = ['status' => 1];
         // Paging query by records count
         $listStatus1 = ceil($this->orderModel->listCount($status1)/$limit);
+       // die($listperpage);
         $data = [
             'total_pages' => $total_pages,
             'listCount' => $listCount,
             'orders' => $orders,
             'sort' => $sort,
             'limit' => $limit,
-            'listStatus1' => $listStatus1        
+            'listStatus1' => $listStatus1,        
+            'total_results' => $total_results        
            
         ];
         $this->view('orders/index', $data);
