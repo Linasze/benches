@@ -91,7 +91,7 @@ Rūšiuoti nuo:
 </thead>
 <tbody id="show-list">
     <?php foreach($data['orders'] as $order):?>
-    <tr id="hide"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+    <tr id="hide">
         <td><?php echo $order->id;?></td>
         <td><?php echo $order->order_id;?></td>
         <td><?php echo $order->name. " " . $order->last_name;?></td>
@@ -136,7 +136,7 @@ Rūšiuoti nuo:
 <script src="<?php echo URLROOT;?>/public/js/js.js"></script>
 <script>
 $('[data-toggle=confirmation]').confirmation({
-  rootSelector: '[data-toggle=confirmation]',
+  rootSelector: '[data-toggle=confirmation]'
 });
 </script>
 </body>
