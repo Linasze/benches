@@ -4,9 +4,9 @@ Full custom PHP ordering and orders review system using MVC & OOP & PDO<br>
 <h2>Usage</h2>
 Create database and import the sql-dump/benches.sql file<br>
 Add DB config params to app/config/config.php and change URLROOT address.<br>
-If your change ROOT folder "benches" , when edit public/js/js.js file POST address.<br>
-Open public/index.php and make order<br>
-Open orders/index review your orders.
+If your change ROOT folder "benches" name , when edit public/js/js.js file POST address.<br>
+Open benches/public/index.php and make order<br>
+Open benches/orders/index to review your orders.
 
 <h2>App Info</h2>
 Author
